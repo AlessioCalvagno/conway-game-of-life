@@ -1,10 +1,15 @@
 package it.conway;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class Utils {
+    private static final PrintStream printStream = new PrintStream(System.out, false);
 
     /**
      * Initializes a nrow x ncol boolean matrix with random values
@@ -15,7 +20,7 @@ public class Utils {
      */
     public static List<List<Boolean>> initializeMatrix(int nrow, int ncol)
     {
-        Random random = new Random(1);
+        Random random = new Random();
         List<List<Boolean>> matrix = new ArrayList<>();
         for (int i = 0; i < nrow; i++)
         {
@@ -29,26 +34,24 @@ public class Utils {
         return matrix;
     }
 
-    /**
-     * Inserts a frame of false values around matrix.
-     * The extended matrix has size nrow + 1 x ncol +1.
-     * This frame is used to compute live neighbors count without IndexOutOfBounds exceptions.
-     *
-     * @param matrix
-     */
-    public static void extendFrame(List<List<Boolean>> matrix) {
-        //TODO: really needed? Could i handle borders in other way?
-    }
-
-
-
-    public static void printMatrix(List<List<Boolean>> matrix)
+    public static void printMatrix(List<List<Boolean>> matrix, int gen)
     {
+
+        printStream.println(ConsoleColors.YELLOW.getCode()+"===================================");
+        printStream.println("Generation: " + gen);
+
         matrix.forEach(rowElement -> {
             rowElement.forEach(colElement -> {
-                System.out.print((colElement? '■' :'□')  + " "); // \u25A0 unicode char for ■ \u25A1 unicode char for □
+                printStream.print((colElement? "■" :" ")  + " ");
+//                    printStream.print((colElement? "■" :"□")  + " ");
+//                    System.out.print((colElement? "■" :"□")  + " ");
+
+                // \u25A0 unicode char for ■ \u25A1 unicode char for □
+
             });
-            System.out.println();
+
+            printStream.println();
         });
+        printStream.flush();
     }
 }
