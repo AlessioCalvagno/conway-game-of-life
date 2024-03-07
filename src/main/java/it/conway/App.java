@@ -3,6 +3,7 @@ package it.conway;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Hello world!
@@ -10,15 +11,25 @@ import java.util.List;
  */
 public class App 
 {
+    private static final Scanner scanner = new Scanner(System.in);
+
     public static void main( String[] args ) throws InterruptedException, IOException {
-        System.out.println("Hello World!");
+        printTitle();
+        printAbout();
+        printInstructions();
+        char command = readCommand();
+//        int i = readInt();
+        System.out.println("Command: " + command);
+        Thread.sleep(5000);
+
+
         /*
         List<List<Boolean>> matrix = new ArrayList<>();
         matrix.add(List.of(true,true,true));
         matrix.add(List.of(false,false,false));
-         */
-        int nrow = 70; //30
-        int ncol = 150; //50
+        */
+        int nrow = 35; //30
+        int ncol = 75; //50
         List<List<Boolean>> matrix = Utils.initializeMatrix(nrow, ncol);
 //        Utils.printMatrix(matrix);
 
@@ -47,5 +58,48 @@ public class App
         }
         System.out.println("*********************************");
         Utils.printMatrix(matrix,ngenerations);
+    }
+
+    private static void printTitle() {
+        System.out.println(ConsoleColors.BLUE_BOLD +
+                "██╗░░░░░██╗███████╗███████╗\n" +
+                "██║░░░░░██║██╔════╝██╔════╝\n" +
+                "██║░░░░░██║█████╗░░█████╗░░\n" +
+                "██║░░░░░██║██╔══╝░░██╔══╝░░\n" +
+                "███████╗██║██║░░░░░███████╗\n" +
+                "╚══════╝╚═╝╚═╝░░░░░╚══════╝\n\n"
+                + ConsoleColors.RESET);
+    }
+
+    private static void printInstructions() {
+        System.out.println(ConsoleColors.GREEN_BOLD +
+                "Welcome to the Conway's Game of Life!\n" +
+                "Commands: \n" +
+                "- s start the game\n" +
+                "- i get some info about Conway's Game of Life\n" +
+                "- q quit\n"
+               + ConsoleColors.RESET);
+    }
+
+    private static void printAbout() {
+        System.out.println("Developed in Italy " +ConsoleColors.GREEN+"▊"+
+                ConsoleColors.WHITE+"▊"+
+                ConsoleColors.RED+"▊"+
+                ConsoleColors.RESET+
+                " by " + ConsoleColors.PURPLE_UNDERLINED +"alessio176\n"+ConsoleColors.RESET);
+    }
+
+    private static char readCommand() {
+        System.out.print(ConsoleColors.RED+"> ");
+        char command = scanner.nextLine().charAt(0);
+        System.out.println(ConsoleColors.RESET);
+        return command;
+    }
+
+    private static int readInt() {
+        System.out.print(ConsoleColors.RED+"> ");
+        int value = scanner.nextInt();
+        System.out.println(ConsoleColors.RESET);
+        return value;
     }
 }
