@@ -34,11 +34,12 @@ public class Utils {
         return matrix;
     }
 
-    public static void printMatrix(List<List<Boolean>> matrix, int gen)
+    public static void printMatrix(List<List<Boolean>> matrix, int gen, int ngenerations)
     {
 
         printStream.println(ConsoleColors.YELLOW.getCode()+"===================================");
-        printStream.println("Generation: " + gen);
+//        printStream.println("Generation: " + gen);
+        printStream.printf("Generation: %d/%d%n", gen, ngenerations);
 
         matrix.forEach(rowElement -> {
             rowElement.forEach(colElement -> {
