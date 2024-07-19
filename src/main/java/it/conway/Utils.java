@@ -1,5 +1,6 @@
 package it.conway;
 
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,5 +48,19 @@ public class Utils {
             printStream.println();
         });
         printStream.flush();
+    }
+
+    public static void clearConsole() throws IOException, InterruptedException {
+        //to clear console. It works only in console supporting ansi escape sequences.
+        //see https://stackoverflow.com/questions/2979383/how-to-clear-the-console-using-java
+//            System.out.print("\033[H\033[2J");
+//            System.out.flush();
+
+        //workaround to clear console
+        final String os = System.getProperty("os.name");
+        if (os.contains("Windows"))
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        else
+            new ProcessBuilder("clear").inheritIO().start().waitFor();
     }
 }

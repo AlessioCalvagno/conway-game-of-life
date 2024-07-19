@@ -8,6 +8,7 @@ public class App {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws InterruptedException, IOException {
+        Utils.clearConsole();
         printTitle();
         printAbout();
         printInstructions();
@@ -35,6 +36,7 @@ public class App {
                     Thread.sleep(500);
                     System.out.println(ConsoleColors.BLUE + "\u2726 " + "Good bye " + "\u2726");
                     Thread.sleep(1000);
+                    Utils.clearConsole(); //too fancy??
                     return;
                 default:
                     System.out.println(ConsoleColors.RED_UNDERLINED + "Invalid command");
@@ -49,17 +51,7 @@ public class App {
         int ngenerations = 1000;
         for (int gen = 1; gen <= ngenerations; gen++) {
             Thread.sleep(700);
-            //to clear console. It works only in console supporting ansi escape sequences.
-            //see https://stackoverflow.com/questions/2979383/how-to-clear-the-console-using-java
-//            System.out.print("\033[H\033[2J");
-//            System.out.flush();
-
-            //workaround to clear console
-            final String os = System.getProperty("os.name");
-            if (os.contains("Windows"))
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            else
-                new ProcessBuilder("clear").inheritIO().start().waitFor();
+            Utils.clearConsole();
 
             Utils.printMatrix(matrix, gen, ngenerations);
             matrix = GameLogic.nextGeneration(matrix);
