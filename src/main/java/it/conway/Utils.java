@@ -1,9 +1,6 @@
 package it.conway;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
 import java.io.PrintStream;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -38,19 +35,15 @@ public class Utils {
     {
 
         printStream.println(ConsoleColors.YELLOW.getCode()+"===================================");
-//        printStream.println("Generation: " + gen);
         printStream.printf("Generation: %d/%d%n", gen, ngenerations);
 
         matrix.forEach(rowElement -> {
             rowElement.forEach(colElement -> {
                 printStream.print((colElement? "■" :" ")  + " ");
 //                    printStream.print((colElement? "■" :"□")  + " ");
-//                    System.out.print((colElement? "■" :"□")  + " ");
 
                 // \u25A0 unicode char for ■ \u25A1 unicode char for □
-
             });
-
             printStream.println();
         });
         printStream.flush();

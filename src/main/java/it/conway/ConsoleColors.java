@@ -1,7 +1,8 @@
 package it.conway;
 
 /**
- * see https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
+ * A utility to print color in console using println.
+ * See https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
  */
 public enum ConsoleColors
 {

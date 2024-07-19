@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * Hello world!
- */
 public class App {
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -39,23 +36,15 @@ public class App {
                     System.out.println(ConsoleColors.BLUE + "\u2726 " + "Good bye " + "\u2726");
                     Thread.sleep(1000);
                     return;
-//                break;
                 default:
                     System.out.println(ConsoleColors.RED_UNDERLINED + "Invalid command");
                     break;
             }
         }
 
-
-        /*
-        List<List<Boolean>> matrix = new ArrayList<>();
-        matrix.add(List.of(true,true,true));
-        matrix.add(List.of(false,false,false));
-        */
         int nrow = 35; //30
         int ncol = 75; //50
         List<List<Boolean>> matrix = Utils.initializeMatrix(nrow, ncol);
-//        Utils.printMatrix(matrix);
 
         int ngenerations = 1000;
         for (int gen = 1; gen <= ngenerations; gen++) {
@@ -71,11 +60,7 @@ public class App {
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
             else
                 new ProcessBuilder("clear").inheritIO().start().waitFor();
-//            Runtime.getRuntime().exec("cls");
 
-
-//            System.out.println("\033[0;31m"+"===================================");
-//            System.out.println("Generation: " + gen);
             Utils.printMatrix(matrix, gen, ngenerations);
             matrix = GameLogic.nextGeneration(matrix);
         }
@@ -135,12 +120,5 @@ public class App {
                 "For more info about Conway's game of life, refer to Wikipedia page:\nhttps://en.wikipedia.org/wiki/Conway's_Game_of_Life\n\n"+
                 "Have fun and enjoy ✨");
         System.out.println(ConsoleColors.RESET);
-    }
-
-    private static int readInt() {
-        System.out.print(ConsoleColors.RED + "> ");
-        int value = scanner.nextInt();
-        System.out.println(ConsoleColors.RESET);
-        return value;
     }
 }

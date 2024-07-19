@@ -44,7 +44,6 @@ public class GameLogic {
 
     public static Integer countLiveNeighbors(List<List<Boolean>> matrix, int row, int col)
     {
-        //todo: handle elements in the borders
         Boolean cell = matrix.get(row).get(col);
         List<Boolean> neighbors = new ArrayList<>(8);
         AtomicInteger liveNeighbors = new AtomicInteger(0);
