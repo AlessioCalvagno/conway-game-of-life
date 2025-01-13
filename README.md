@@ -15,3 +15,5 @@ The app runs in console, with some fancy details 🎨✨.
 1. Launch it either with ```java -cp  target/classes it.conway.App``` or ```java -jar target/life-1.0.jar```
 
 Feel free to report issues, contrtibutions are welcomed 😌
+
+This project is licensed under the terms of the Apache-2.0 license.
